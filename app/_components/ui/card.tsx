@@ -2,9 +2,25 @@ import * as React from 'react';
 
 import { cn } from '@/app/_components/utils';
 
+// const Card = React.forwardRef<
+//   HTMLDivElement,
+//   React.HTMLAttributes<HTMLDivElement>
+// >(({ className, ...props }, ref) => (
+//   <div
+//     ref={ref}
+//     className={cn(
+//       'rounded-lg border bg-card text-card-foreground shadow-sm',
+//       className
+//     )}
+//     {...props}
+//   />
+// ));
+
+// 일관성 있는 코드 작성을 위해 변경함.
+//  그리고 "div" 처럼 사용하는 것이 더 편하다.
 const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
+    React.ElementRef<"div">,
+    React.ComponentPropsWithoutRef<"div">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
