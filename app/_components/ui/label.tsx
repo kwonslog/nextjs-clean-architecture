@@ -1,7 +1,10 @@
 'use client';
 
+// export 에 접근할때 React. 으로 접근 하도록 선언
 import * as React from 'react';
 import * as LabelPrimitive from '@radix-ui/react-label';
+
+// type 을 사용하면 type 형태로만 사용함. 런타임 번들에 포함되지 않음.
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/app/_components/utils';
@@ -31,6 +34,8 @@ const Label = React.forwardRef<
     {...props}
   />
 ));
+
+// React DevTools에서 컴포넌트 이름을 명확히 표시해 디버깅을 쉽게 하기 위해 지정
 Label.displayName = LabelPrimitive.Root.displayName;
 
 export { Label };
