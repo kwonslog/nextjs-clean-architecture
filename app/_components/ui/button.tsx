@@ -39,6 +39,18 @@ export interface ButtonProps
   asChild?: boolean;
 }
 
+
+/*
+asChild 값에 따라 radix 의 Slot 으로 처리 할지 일반 button 으로 할지 결정 된다.
+
+<Button asChild>
+    <a href="/home">Go Home</a>
+</Button>
+
+이런식으로 사용하면 <a> 가 버튼 스타일을 가지게 된다.
+(asChild 는 asChild={true} 의 단축된 표현이다.)
+
+*/
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
