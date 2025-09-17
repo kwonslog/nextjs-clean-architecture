@@ -1,2 +1,15 @@
 {
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+
+  /*
+  eslint 규칙 위반을 VS Code 편집기 창에 표시하기 위한 설정 추가
+  */
+  "eslint.enable": true, // false 로 설정시 IDE 편집기 창에 규칙 위반이 표시 되지 않음.
+  "eslint.validate": ["javascript", "typescript", "typescriptreact"], // 검사할 파일 확장자
+  "eslint.run": "onType", // 입력할 때마다 검사 (onSave 로 바꾸면 저장 시만 검사)
+  // "editor.codeActionsOnSave": {
+  //     "source.fixAll.eslint": true // 저장할 때 자동으로 ESLint 규칙에 맞게 고침
+  // },
 }

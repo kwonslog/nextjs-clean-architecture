@@ -22,6 +22,7 @@ import { ICreateTodoController } from '@/src/interface-adapters/controllers/todo
 import { IGetTodosForUserController } from '@/src/interface-adapters/controllers/todos/get-todos-for-user.controller';
 import { IToggleTodoController } from '@/src/interface-adapters/controllers/todos/toggle-todo.controller';
 
+// Symbol 을 사용하여 각 대상을 구분 한다.
 export const DI_SYMBOLS = {
   // Services
   IAuthenticationService: Symbol.for('IAuthenticationService'),

@@ -19,6 +19,7 @@ export function createAuthenticationModule() {
   if (process.env.NODE_ENV === 'test') {
     authenticationModule
       .bind(DI_SYMBOLS.IAuthenticationService)
+      // 두번째 인자값은 구현체의 생성자 인자값으로 사용된다.
       .toClass(MockAuthenticationService, [DI_SYMBOLS.IUsersRepository]);
   } else {
     authenticationModule
@@ -31,6 +32,8 @@ export function createAuthenticationModule() {
 
   authenticationModule
     .bind(DI_SYMBOLS.ISignInUseCase)
+
+    // 클래스가 아닌 함수를 구현체로 사용하고 함수 호출에 필요한 인자값을 전달한다.
     .toHigherOrderFunction(signInUseCase, [
       DI_SYMBOLS.IInstrumentationService,
       DI_SYMBOLS.IUsersRepository,

@@ -1,7 +1,20 @@
 'use client';
-
 import * as React from 'react';
+
+/*
+radix 공식 문서의 샘플 코드는
+  import { Checkbox } from 'radix-ui'; 를 사용하고 있는데
+
+실무 기준으로는
+  '@radix-ui/react-checkbox'
+이렇게 개별 컴포넌트를 가져와서 사용하는 것을 권장한다.
+
+'radix-ui' 를 사용해도 tree-shaking 을 통해 번들링 최적화를 한다고 하지만
+조건에 따라 최적화 정도가 달라질수 있다고 한다.
+*/
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
+
+// 체크 아이콘(SVG)
 import { Check } from 'lucide-react';
 
 import { cn } from '@/app/_components/utils';

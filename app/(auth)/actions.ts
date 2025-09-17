@@ -1,5 +1,15 @@
 'use server';
 
+/*
+import { IAuthenticationService } from '@/src/application/services/authentication.service.interface';
+
+위와 같이 import 를 사용하는 경우 오류 메세지가 발생한다.
+ No rule allowing this dependency was found. File is of type 'web'. Dependency is of type 'service-interfaces'
+
+ 이유는 .eslintrc.json 파일 안에 의존경로가 설정 되어 있다.
+  type 을 구분하고 각 type 이 의존 가능한 경로를 지정 할 수 있다.
+*/
+
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
@@ -10,6 +20,8 @@ import {
   AuthenticationError,
   UnauthenticatedError,
 } from '@/src/entities/errors/auth';
+
+// 의존성 주입을 위한 함수
 import { getInjection } from '@/di/container';
 
 export async function signUp(formData: FormData) {

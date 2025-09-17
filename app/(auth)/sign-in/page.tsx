@@ -4,18 +4,20 @@ import { useState } from 'react';
 import { Loader } from 'lucide-react';
 
 import Link from 'next/link';
-import { Button } from '../../_components/ui/button';
+
+// 절대 경로를 사용하도록 수정
+import { Button } from '@/app/_components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '../../_components/ui/card';
-import { Input } from '../../_components/ui/input';
-import { Label } from '../../_components/ui/label';
-import { Separator } from '../../_components/ui/separator';
-import { signIn } from '../actions';
+} from '@/app/_components/ui/card';
+import { Input } from '@/app/_components/ui/input';
+import { Label } from '@/app/_components/ui/label';
+import { Separator } from '@/app/_components/ui/separator';
+import { signIn } from '@/app/(auth)/actions';
 
 export default function SignIn() {
   const [error, setError] = useState<string>();
