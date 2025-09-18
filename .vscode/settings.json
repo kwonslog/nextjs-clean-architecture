@@ -1,4 +1,11 @@
 {
+
+  // 탐색기 소스 구조 가독성 향상
+  "explorer.compactFolders": false,
+  "workbench.tree.indent": 15,
+  "workbench.tree.renderIndentGuides": "always",
+  "explorer.decorations.colors": true,
+
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
