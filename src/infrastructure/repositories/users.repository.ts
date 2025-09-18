@@ -42,6 +42,9 @@ export class UsersRepository implements IUsersRepository {
     );
   }
   async getUserByUsername(username: string): Promise<User | undefined> {
+
+    // TODO: 여기서 await 는 필요가 없는 부분 같은데 어떤 의도로 사용하고 있는지 궁금하다.
+    //   다른 코드들 에서도 사용하고 있는 것을 보면 일관성 같은 의미를 부여하는 건지?
     return await this.instrumentationService.startSpan(
       { name: 'UsersRepository > getUserByUsername' },
       async () => {
@@ -52,6 +55,7 @@ export class UsersRepository implements IUsersRepository {
 
           const user = await this.instrumentationService.startSpan(
             {
+              // 실행되는 쿼리문이 들어간다.
               name: query.toSQL().sql,
               op: 'db.query',
               attributes: { 'db.system': 'sqlite' },

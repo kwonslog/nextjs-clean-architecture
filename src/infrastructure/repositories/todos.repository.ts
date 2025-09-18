@@ -21,8 +21,11 @@ export class TodosRepository implements ITodosRepository {
       { name: 'TodosRepository > createTodo' },
       async () => {
         try {
+
+          // returning() : insert 된 결과를 리턴해 준다.
           const query = invoker.insert(todos).values(todo).returning();
 
+          // insert 된 결과는 배열 형태.
           const [created] = await this.instrumentationService.startSpan(
             {
               name: query.toSQL().sql,

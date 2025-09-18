@@ -15,6 +15,7 @@ export async function createTodo(formData: FormData) {
     { recordResponse: true },
     async () => {
       try {
+        // formData 의 key:value 를 객체로 변환한다.
         const data = Object.fromEntries(formData.entries());
         const sessionId = cookies().get(SESSION_COOKIE)?.value;
         const createTodoController = getInjection('ICreateTodoController');
@@ -34,6 +35,7 @@ export async function createTodo(formData: FormData) {
         };
       }
 
+      // 지정한 경로의 서버 캐시를 무효화하고, 다음 요청 시 새 데이터를 불러오게 만드는 함수.
       revalidatePath('/');
       return { success: true };
     }

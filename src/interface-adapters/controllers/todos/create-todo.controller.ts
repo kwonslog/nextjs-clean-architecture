@@ -63,6 +63,8 @@ export const createTodoController =
           async () =>
             transactionManagerService.startTransaction(async (tx) => {
               try {
+                //  Promise.all() 로 처리하면 각각 병렬로 실행되고,
+                //  한건이라도 오류가 발생하면 catch 하여 rollback 한다.
                 return await Promise.all(
                   todosFromInput.map((t) =>
                     createTodoUseCase({ todo: t }, user.id, tx)

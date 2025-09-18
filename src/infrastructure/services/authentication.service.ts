@@ -18,6 +18,7 @@ export class AuthenticationService implements IAuthenticationService {
     private readonly _usersRepository: IUsersRepository,
     private readonly _instrumentationService: IInstrumentationService
   ) {
+    // luciaAdapter : 세션,유저 정보를 DB에 저장하거나 읽을 때 쓰는 저장소 어댑터
     this._lucia = new Lucia(luciaAdapter, {
       sessionCookie: {
         name: SESSION_COOKIE,
@@ -78,12 +79,16 @@ export class AuthenticationService implements IAuthenticationService {
       async () => {
         const luciaSession = await this._instrumentationService.startSpan(
           { name: 'lucia.createSession', op: 'function' },
+          // 백엔드(DB)에 세션을 만들고 저장
           () => this._lucia.createSession(user.id, {})
         );
 
+        // luciaSession 의 값을 검증하고 일치하는 경우 해당 객체를 리턴.
         const session = sessionSchema.parse(luciaSession);
+
         const cookie = await this._instrumentationService.startSpan(
           { name: 'lucia.createSessionCookie', op: 'function' },
+          //클라이언트 브라우저에 세션 ID를 심는 쿠키 생성
           () => this._lucia.createSessionCookie(session.id)
         );
 
