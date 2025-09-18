@@ -61,6 +61,11 @@ export const bulkUpdateController =
                 console.error(err);
                 console.error('Rolling back toggles!');
                 mainTx.rollback();
+
+                // 에러를 상위로 전달한다.
+                //  bulkUpdate() 함수에서 NotFoundError 에 대한 예외 케이스를 처리하고 있는데
+                //  throw err; 부분이 없으면 전달되지 않기 때문에 추가함.
+                throw err;
               }
 
               // Create a savepoint to avoid rolling back toggles if deletes fail
@@ -75,6 +80,9 @@ export const bulkUpdateController =
                   } catch (err) {
                     console.error('Rolling back deletes!');
                     deleteTx.rollback();
+
+                    // 추가
+                    throw err;
                   }
                 },
                 mainTx
